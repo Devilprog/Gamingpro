@@ -1,0 +1,340 @@
+/* General Styling for Sign-up Page - Consistent with GamingPro Hub Theme */
+body {
+    font-family: 'Arial', sans-serif;
+    margin: 0;
+    background-color: #1a1a2e; /* Dark gaming-themed background */
+    color: #e0e0e0;
+    overflow-x: hidden; /* Prevent horizontal scrollbar */
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+}
+
+/* Navbar for Sign-up Page */
+.signup-navbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 15px 15px;
+    background-color: #0f0f1b; /* Match main navbar */
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.5);
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+}
+
+.signup-website-name {
+    font-size: 1.8em;
+    font-weight: bold;
+    color: #e94560; /* Accent color */
+    text-decoration: none;
+    text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.7);
+    white-space: nowrap;
+}
+
+.signup-nav-links {
+    display: flex;
+    align-items: center;
+    gap: 25px;
+    flex-wrap: wrap;
+    justify-content: flex-end;
+}
+
+.signup-nav-link {
+    color: #c0c0c0;
+    text-decoration: none;
+    font-size: 1.1em;
+    font-weight: 500;
+    transition: color 0.3s ease, transform 0.2s ease;
+    padding: 5px 0;
+    position: relative;
+    white-space: nowrap;
+}
+
+.signup-nav-link:hover {
+    color: #e94560;
+    transform: translateY(-2px);
+    text-shadow: 0 0 8px rgba(233, 69, 96, 0.5);
+}
+
+.signup-nav-link::after { /* Underline effect for links */
+    content: '';
+    position: absolute;
+    width: 0;
+    height: 2px;
+    background-color: #e94560;
+    left: 0;
+    bottom: 0;
+    transition: width 0.3s ease-in-out;
+}
+
+.signup-nav-link:hover::after {
+    width: 100%;
+}
+
+.signup-login-link { /* Button-like style for Login link */
+    background-color: #533483;
+    color: white;
+    padding: 8px 15px;
+    border-radius: 5px;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+    text-shadow: none;
+}
+
+.signup-login-link:hover {
+    background-color: #3b255c;
+    transform: translateY(-2px);
+    color: white;
+}
+
+.signup-login-link::after {
+    display: none; /* Hide underline for button-like link */
+}
+
+/* Registration Form Container */
+.signup-container {
+    flex-grow: 1; /* Allows container to take up available space */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 30px 20px; /* Increased padding for better spacing */
+    box-sizing: border-box;
+}
+
+.registration-box {
+    background-color: #0f0f1b; /* Match navbar background */
+    padding: 40px;
+    border-radius: 10px;
+    box-shadow: 0 5px 20px rgba(0, 0, 0, 0.7);
+    width: 100%;
+    max-width: 500px; /* Slightly wider for more fields */
+    text-align: center;
+    border: 1px solid #533483; /* Accent border */
+}
+
+.registration-box h2 {
+    color: #e94560; /* Accent color for heading */
+    margin-bottom: 30px;
+    font-size: 2.2em;
+    text-transform: uppercase;
+    letter-spacing: 1.5px;
+}
+
+.signup-form-group {
+    margin-bottom: 20px;
+    text-align: left;
+}
+
+.signup-form-group label {
+    display: block;
+    margin-bottom: 8px;
+    color: #c0c0c0;
+    font-size: 1em;
+}
+
+.signup-form-group input[type="text"],
+.signup-form-group input[type="email"],
+.signup-form-group input[type="password"],
+.signup-form-group input[type="date"],
+.signup-form-group select {
+    width: 100%;
+    padding: 12px;
+    border: 1px solid #533483;
+    border-radius: 5px;
+    background-color: #2e2e4a; /* Match card background */
+    color: #e0e0e0;
+    font-size: 1.1em;
+    box-sizing: border-box;
+    appearance: none; /* Remove default select arrow */
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    background-image: url('data:image/svg+xml;charset=UTF-8,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%2024%2024%22%20fill%3D%22%23c0c0c0%22%3E%3Cpath%20d%3D%22M7%2010l5%205%205-5z%22%2F%3E%3C%2Fsvg%3E'); /* Custom arrow for select */
+    background-repeat: no-repeat;
+    background-position: right 10px center;
+    background-size: 16px;
+}
+
+/* Style for select options */
+.signup-form-group select option {
+    background-color: #2e2e4a; /* Match input background */
+    color: #e0e0e0;
+}
+
+
+.signup-form-group input:focus,
+.signup-form-group select:focus {
+    outline: none;
+    border-color: #e94560;
+    box-shadow: 0 0 8px rgba(233, 69, 96, 0.4);
+}
+
+.checkbox-group {
+    display: flex;
+    align-items: center;
+    gap: 10px; /* Space between checkbox and label */
+    margin-bottom: 25px;
+}
+
+.checkbox-group input[type="checkbox"] {
+    width: 20px;
+    height: 20px;
+    border: 1px solid #533483;
+    border-radius: 3px;
+    background-color: #2e2e4a;
+    cursor: pointer;
+    appearance: none; /* Hide default checkbox */
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    position: relative;
+}
+
+.checkbox-group input[type="checkbox"]:checked {
+    background-color: #e94560; /* Accent color when checked */
+    border-color: #e94560;
+}
+
+.checkbox-group input[type="checkbox"]:checked::before {
+    content: '\2713'; /* Checkmark unicode character */
+    display: block;
+    color: white;
+    font-size: 16px;
+    text-align: center;
+    line-height: 20px;
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+}
+
+.checkbox-group label {
+    margin-bottom: 0; /* Remove default label margin */
+    font-size: 0.9em;
+}
+
+.terms-link {
+    color: #533483;
+    text-decoration: none;
+    transition: color 0.3s ease;
+}
+
+.terms-link:hover {
+    color: #e94560;
+    text-decoration: underline;
+}
+
+
+.signup-button {
+    background-color: #e94560; /* Primary accent color */
+    color: white;
+    border: none;
+    padding: 15px 30px;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 1.3em;
+    font-weight: bold;
+    transition: background-color 0.3s ease, transform 0.2s ease, box-shadow 0.3s ease;
+    width: 100%; /* Full width button */
+    margin-top: 10px;
+}
+
+.signup-button:hover {
+    background-color: #cf3d55; /* Darker accent on hover */
+    transform: translateY(-3px);
+    box-shadow: 0 6px 20px rgba(233, 69, 96, 0.4);
+}
+
+.login-redirect {
+    margin-top: 25px;
+    font-size: 0.95em;
+    color: #c0c0c0;
+}
+
+.login-redirect a {
+    color: #533483;
+    text-decoration: none;
+    transition: color 0.3s ease;
+}
+
+.login-redirect a:hover {
+    color: #e94560;
+    text-decoration: underline;
+}
+
+
+/* Responsive Adjustments for Sign-up Page */
+@media (max-width: 768px) {
+    .signup-navbar {
+        flex-direction: column;
+        padding: 10px 10px;
+    }
+    .signup-navbar-left, .signup-navbar-right {
+        flex-basis: 100%;
+        text-align: center;
+        margin-bottom: 5px;
+    }
+    .signup-website-name {
+        font-size: 1.5em;
+    }
+    .signup-nav-links {
+        justify-content: center;
+        gap: 15px;
+        margin-top: 10px;
+    }
+    .signup-nav-link {
+        font-size: 1em;
+        padding: 5px 8px;
+    }
+    .signup-login-link {
+        padding: 6px 12px;
+        font-size: 0.9em;
+    }
+
+    .registration-box {
+        padding: 30px 20px;
+    }
+    .registration-box h2 {
+        font-size: 1.8em;
+        margin-bottom: 25px;
+    }
+    .signup-form-group label,
+    .signup-form-group input,
+    .signup-form-group select {
+        font-size: 0.95em;
+        padding: 10px;
+    }
+    .signup-button {
+        padding: 12px 25px;
+        font-size: 1.1em;
+    }
+    .checkbox-group label {
+        font-size: 0.85em;
+    }
+}
+
+@media (max-width: 480px) {
+    .signup-website-name {
+        font-size: 1.3em;
+    }
+    .signup-nav-link {
+        font-size: 0.9em;
+    }
+    .registration-box {
+        padding: 25px 15px;
+    }
+    .registration-box h2 {
+        font-size: 1.6em;
+    }
+    .signup-form-group input,
+    .signup-form-group select {
+        font-size: 0.9em;
+        padding: 8px;
+    }
+    .signup-button {
+        font-size: 1em;
+        padding: 10px 20px;
+    }
+    .login-redirect {
+        font-size: 0.85em;
+    }
+}

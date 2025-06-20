@@ -1,1 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Register for Tournament - GamingPro Hub</title>
+    <!-- Link to the separate sign-up page stylesheet -->
+    <link rel="stylesheet" href="style.css">
+    <!-- Font Awesome for any potential icons (e.g., eye icon for password, if implemented) -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+</head>
+<body>
+    <header class="signup-navbar">
+        <div class="signup-navbar-left">
+            <a href="index.html" class="signup-website-name">GamingPro Hub</a>
+        </div>
+        
+    </header>
 
+    <div class="signup-container">
+        <div class="registration-box">
+            <h2>Register for Tournament</h2>
+            <form action="#" method="POST">
+                <div class="signup-form-group">
+                    <label for="full-name">Full Name</label>
+                    <input type="text" id="full-name" name="fullName" required placeholder="John Doe">
+                </div>
+                <div class="signup-form-group">
+                    <label for="email">Email Address</label>
+                    <input type="email" id="email" name="email" required placeholder="johndoe@example.com">
+                </div>
+                <div class="signup-form-group">
+                    <label for="password">Password</label>
+                    <input type="password" id="password" name="password" required placeholder="Create a strong password">
+                </div>
+                <div class="signup-form-group">
+                    <label for="confirm-password">Confirm Password</label>
+                    <input type="password" id="confirm-password" name="confirmPassword" required placeholder="Re-enter your password">
+                </div>
+                
+                 <div class="signup-form-group">
+                    <label for="dob">Date of Birth</label>
+                    <input type="date" id="dob" name="dob" required>
+                </div>
+              
+                <div class="signup-form-group checkbox-group">
+                    <input type="checkbox" id="terms" name="terms" required>
+                    <label for="terms">I agree to the <a href="#" class="terms-link">Terms & Conditions</a></label>
+                </div>
+
+                <button type="submit" class="signup-button">Register Now</button>
+            </form>
+            <p class="login-redirect">Already have an account? <a href="/Login/index.html">Login here</a></p>
+        </div>
+    </div>
+</body>
+</html>
