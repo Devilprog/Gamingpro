@@ -1,0 +1,515 @@
+/* General Styling for Leaderboard Page - Consistent with GamingPro Hub Theme */
+body {
+    font-family: 'Arial', sans-serif;
+    margin: 0;
+    background-color: #1a1a2e; /* Dark gaming-themed background */
+    color: #e0e0e0;
+    overflow-x: hidden; /* Prevent horizontal scrollbar */
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+}
+
+/* Navbar for Leaderboard Page */
+.leaderboard-navbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 15px 15px;
+    background-color: #0f0f1b; /* Match main navbar */
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.5);
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+}
+
+.leaderboard-website-name {
+    font-size: 1.8em;
+    font-weight: bold;
+    color: #e94560; /* Accent color */
+    text-decoration: none;
+    text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.7);
+    white-space: nowrap;
+}
+
+.leaderboard-nav-links {
+    display: flex;
+    align-items: center;
+    gap: 25px;
+    flex-wrap: wrap;
+    justify-content: flex-end;
+}
+
+.leaderboard-nav-link {
+    color: #c0c0c0;
+    text-decoration: none;
+    font-size: 1.1em;
+    font-weight: 500;
+    transition: color 0.3s ease, transform 0.2s ease;
+    padding: 5px 0;
+    position: relative;
+    white-space: nowrap;
+}
+
+.leaderboard-nav-link:hover {
+    color: #e94560;
+    transform: translateY(-2px);
+    text-shadow: 0 0 8px rgba(233, 69, 96, 0.5);
+}
+
+.leaderboard-nav-link::after { /* Underline effect for links */
+    content: '';
+    position: absolute;
+    width: 0;
+    height: 2px;
+    background-color: #e94560;
+    left: 0;
+    bottom: 0;
+    transition: width 0.3s ease-in-out;
+}
+
+.leaderboard-nav-link:hover::after {
+    width: 100%;
+}
+
+.leaderboard-login-link { /* Button-like style for Login link */
+    background-color: #533483;
+    color: white;
+    padding: 8px 15px;
+    border-radius: 5px;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+    text-shadow: none;
+}
+
+.leaderboard-login-link:hover {
+    background-color: #3b255c;
+    transform: translateY(-2px);
+    color: white;
+}
+
+.leaderboard-login-link::after {
+    display: none; /* Hide underline for button-like link */
+}
+
+/* Leaderboard Content Layout */
+.leaderboard-container {
+    flex-grow: 1;
+    padding: 40px 20px;
+    max-width: 1200px;
+    margin: 30px auto;
+    background-color: #0f0f1b; /* Match navbar background */
+    border-radius: 10px;
+    box-shadow: 0 5px 20px rgba(0, 0, 0, 0.7);
+    border: 1px solid #533483; /* Accent border */
+    text-align: center;
+}
+
+.leaderboard-title {
+    font-size: 3.5em;
+    color: #e94560;
+    margin-bottom: 10px;
+    text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.7);
+    letter-spacing: 1.5px;
+}
+
+.leaderboard-subtitle {
+    font-size: 1.2em;
+    color: #c0c0c0;
+    margin-bottom: 40px;
+}
+
+/* Top Players Section */
+.top-players-section {
+    display: flex;
+    justify-content: center;
+    gap: 30px;
+    margin-bottom: 60px;
+    flex-wrap: wrap; /* Allow cards to wrap on smaller screens */
+}
+
+.top-player-card {
+    background-color: #2e2e4a; /* Card background */
+    padding: 30px 20px;
+    border-radius: 15px;
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.5);
+    text-align: center;
+    position: relative;
+    width: 250px; /* Fixed width for consistency */
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    border: 2px solid;
+}
+
+.top-player-card:hover {
+    transform: translateY(-8px) scale(1.03);
+    box-shadow: 0 12px 30px rgba(0, 0, 0, 0.7);
+}
+
+.top-player-card.gold { border-color: #FFD700; background-color: #4a3a1b; } /* Gold color */
+.top-player-card.silver { border-color: #C0C0C0; background-color: #3b3b4a; } /* Silver color */
+.top-player-card.bronze { border-color: #CD7F32; background-color: #3f2f1b; } /* Bronze color */
+
+.rank-badge {
+    position: absolute;
+    top: -15px;
+    left: 50%;
+    transform: translateX(-50%);
+    background-color: #e94560; /* Accent color for badge */
+    color: white;
+    font-size: 1.8em;
+    font-weight: bold;
+    padding: 5px 15px;
+    border-radius: 10px;
+    box-shadow: 0 3px 10px rgba(0, 0, 0, 0.5);
+    z-index: 10;
+    min-width: 50px;
+    text-align: center;
+}
+
+.top-player-card.gold .rank-badge { background-color: #FFD700; color: #222; }
+.top-player-card.silver .rank-badge { background-color: #C0C0C0; color: #222; }
+.top-player-card.bronze .rank-badge { background-color: #CD7F32; color: #222; }
+
+
+.player-avatar {
+    width: 100px;
+    height: 100px;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 3px solid #e94560; /* Accent border */
+    margin-bottom: 15px;
+    box-shadow: 0 0 15px rgba(233, 69, 96, 0.4);
+}
+
+.top-player-card.gold .player-avatar { border-color: #FFD700; }
+.top-player-card.silver .player-avatar { border-color: #C0C0C0; }
+.top-player-card.bronze .player-avatar { border-color: #CD7F32; }
+
+.player-name {
+    font-size: 2em;
+    color: #ffffff;
+    margin-bottom: 5px;
+    text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.5);
+}
+
+.player-stats {
+    font-size: 1.1em;
+    color: #c0c0c0;
+    margin-bottom: 15px;
+}
+
+.rank-change {
+    font-size: 1.2em;
+    font-weight: bold;
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    padding: 5px 10px;
+    border-radius: 5px;
+}
+
+.rank-change.up { color: #4CAF50; background-color: rgba(76, 175, 80, 0.2); } /* Green */
+.rank-change.down { color: #f44336; background-color: rgba(244, 67, 54, 0.2); } /* Red */
+.rank-change.stable { color: #7f8c8d; background-color: rgba(127, 140, 141, 0.2); } /* Grey */
+
+
+/* Filter Options */
+.leaderboard-filters {
+    margin-bottom: 40px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 15px;
+    flex-wrap: wrap;
+}
+
+.filter-label {
+    font-size: 1.1em;
+    color: #c0c0c0;
+    font-weight: bold;
+}
+
+.filter-dropdown {
+    padding: 10px 20px;
+    border: 1px solid #533483;
+    border-radius: 8px;
+    background-color: #2e2e4a;
+    color: #e0e0e0;
+    font-size: 1em;
+    cursor: pointer;
+    appearance: none;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    background-image: url('data:image/svg+xml;charset=UTF-8,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%2024%2024%22%20fill%3D%22%23c0c0c0%22%3E%3Cpath%20d%3D%22M7%2010l5%205%205-5z%22%2F%3E%3C%2Fsvg%3E');
+    background-repeat: no-repeat;
+    background-position: right 15px center;
+    background-size: 18px;
+    transition: border-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+.filter-dropdown:focus {
+    outline: none;
+    border-color: #e94560;
+    box-shadow: 0 0 8px rgba(233, 69, 96, 0.4);
+}
+
+.filter-dropdown option {
+    background-color: #2e2e4a;
+    color: #e0e0e0;
+}
+
+/* Leaderboard List/Table Section */
+.leaderboard-list-section {
+    background-color: #2e2e4a; /* List background */
+    border-radius: 10px;
+    overflow: hidden; /* Ensures borders/shadows of rows stay within bounds */
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.4);
+    border: 1px solid #533483;
+}
+
+.leaderboard-header-row,
+.player-row {
+    display: grid;
+    grid-template-columns: 0.5fr 2fr 1.2fr 1fr 1fr 0.8fr; /* Responsive columns */
+    gap: 10px;
+    padding: 15px 20px;
+    align-items: center;
+    border-bottom: 1px solid rgba(83, 52, 131, 0.3);
+}
+
+.leaderboard-header-row {
+    background-color: #533483; /* Header background */
+    color: white;
+    font-weight: bold;
+    font-size: 1.1em;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    border-bottom: 2px solid #e94560; /* Accent border */
+}
+
+.header-item {
+    text-align: center;
+}
+
+.header-item.rank { text-align: left; }
+.header-item.player { text-align: left; }
+
+.player-row {
+    background-color: #0f0f1b; /* Row background */
+    transition: background-color 0.2s ease, transform 0.2s ease;
+}
+
+.player-row:nth-child(even) {
+    background-color: #1a1a2e; /* Alternate row color */
+}
+
+.player-row:hover {
+    background-color: #2e2e4a;
+    transform: translateX(5px);
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+}
+
+.player-row > div {
+    text-align: center;
+    font-size: 1em;
+    color: #e0e0e0;
+}
+
+.player-row .rank {
+    font-weight: bold;
+    color: #e94560;
+    font-size: 1.1em;
+    text-align: left;
+}
+
+.player-row .player {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    text-align: left;
+    font-weight: bold;
+}
+
+.player-list-avatar {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 2px solid #533483;
+}
+
+.player-row .rank-change { /* Re-use existing class for consistency */
+    font-size: 0.9em;
+    justify-content: center;
+    padding: 3px 8px;
+}
+
+/* Responsive Adjustments for Leaderboard Page */
+@media (max-width: 992px) {
+    .leaderboard-container {
+        padding: 30px 15px;
+    }
+    .leaderboard-title {
+        font-size: 2.8em;
+    }
+    .leaderboard-subtitle {
+        font-size: 1.1em;
+    }
+    .top-players-section {
+        gap: 20px;
+    }
+    .top-player-card {
+        width: 200px;
+        padding: 20px 15px;
+    }
+    .rank-badge {
+        font-size: 1.5em;
+        padding: 3px 12px;
+    }
+    .player-avatar {
+        width: 80px;
+        height: 80px;
+    }
+    .player-name {
+        font-size: 1.6em;
+    }
+    .player-stats {
+        font-size: 1em;
+    }
+    .rank-change {
+        font-size: 1em;
+    }
+
+    .leaderboard-header-row,
+    .player-row {
+        grid-template-columns: 0.5fr 2.5fr 1fr 1fr 1fr; /* Remove 'Game' column on smaller screens or adjust */
+        /* For simplicity, I'm adjusting columns. You might hide 'Game' with display: none; */
+        /* Let's keep it for now and adjust column widths */
+        grid-template-columns: 0.5fr 2fr 1.2fr 1fr 1fr 0.8fr; /* Keep all for now, responsive will handle text wrap */
+        padding: 12px 15px;
+        font-size: 0.9em;
+    }
+    .leaderboard-header-row {
+        font-size: 1em;
+    }
+    .player-row .rank, .player-row > div {
+        font-size: 0.9em;
+    }
+    .player-list-avatar {
+        width: 35px;
+        height: 35px;
+    }
+}
+
+@media (max-width: 768px) {
+    .leaderboard-navbar {
+        flex-direction: column;
+        padding: 10px 10px;
+    }
+    .leaderboard-navbar-left, .leaderboard-navbar-right {
+        flex-basis: 100%;
+        text-align: center;
+        margin-bottom: 5px;
+    }
+    .leaderboard-website-name {
+        font-size: 1.5em;
+    }
+    .leaderboard-nav-links {
+        justify-content: center;
+        gap: 15px;
+        margin-top: 10px;
+    }
+    .leaderboard-nav-link {
+        font-size: 1em;
+        padding: 5px 8px;
+    }
+    .leaderboard-login-link {
+        padding: 6px 12px;
+        font-size: 0.9em;
+    }
+
+    .leaderboard-container {
+        padding: 25px 10px;
+        margin: 20px auto;
+    }
+    .leaderboard-title {
+        font-size: 2.2em;
+    }
+    .leaderboard-subtitle {
+        font-size: 1em;
+        margin-bottom: 30px;
+    }
+    .top-players-section {
+        flex-direction: column; /* Stack top players on smaller screens */
+        align-items: center;
+        gap: 25px;
+    }
+    .top-player-card {
+        width: 80%; /* Take more width when stacked */
+        max-width: 300px; /* Limit max width for smaller screens */
+        padding: 25px 20px;
+    }
+    .player-avatar {
+        width: 90px;
+        height: 90px;
+    }
+    .player-name {
+        font-size: 1.8em;
+    }
+    .player-stats {
+        font-size: 1.05em;
+    }
+
+    /* Leaderboard table responsivenes - stack columns */
+    .leaderboard-header-row,
+    .player-row {
+        grid-template-columns: 1fr; /* Stack all columns */
+        padding: 10px 15px;
+        text-align: left !important; /* Force text alignment */
+    }
+
+    .leaderboard-header-row .header-item,
+    .player-row > div {
+        text-align: left !important; /* Ensure content is left-aligned when stacked */
+    }
+
+    .player-row .player {
+        margin-bottom: 5px; /* Space between player name and other details */
+    }
+    .player-row .rank, .player-row .game, .player-row .wins, .player-row .kd, .player-row .change {
+        font-size: 0.9em;
+        margin-bottom: 5px;
+    }
+    .player-row .change {
+        justify-content: flex-start; /* Align change icon to left */
+    }
+}
+
+@media (max-width: 480px) {
+    .leaderboard-title {
+        font-size: 1.8em;
+    }
+    .leaderboard-subtitle {
+        font-size: 0.9em;
+    }
+    .top-player-card {
+        padding: 20px 15px;
+    }
+    .player-name {
+        font-size: 1.5em;
+    }
+    .player-stats {
+        font-size: 0.9em;
+    }
+    .rank-badge {
+        font-size: 1.3em;
+        padding: 3px 10px;
+    }
+    .player-avatar {
+        width: 70px;
+        height: 70px;
+    }
+}

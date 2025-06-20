@@ -1,1 +1,151 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Leaderboard - GamingPro Hub</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+</head>
+<body>
+    <header class="leaderboard-navbar">
+        <div class="leaderboard-navbar-left">
+            <a href="" class="leaderboard-website-name">GamingPro Hub</a>
+        </div>
+        <div class="leaderboard-navbar-right">
+            <nav class="leaderboard-nav-links">
+                <a href="/Tournaments/index.html" class="leaderboard-nav-link">Tournaments</a>
+                <a href="/Profile/index.html" class="leaderboard-nav-link">Profile</a>
+                <a href="/Login/index.html" class="leaderboard-nav-link leaderboard-login-link">Login</a>
+            </nav>
+        </div>
+    </header>
 
+    <div class="leaderboard-container">
+        <h1 class="leaderboard-title">Global Player Rankings</h1>
+        <p class="leaderboard-subtitle">Top players competing for glory across all games.</p>
+
+        <section class="top-players-section">
+            <div class="top-player-card silver">
+                <div class="rank-badge">#2</div>
+                <img src="images/avatar-default.png" alt="Player Avatar" class="player-avatar">
+                <h3 class="player-name">ShadowStriker</h3>
+                <p class="player-stats">Wins: 48 | K/D: 2.7</p>
+                <div class="rank-change down"><i class="fas fa-caret-down"></i> 1</div>
+            </div>
+            <div class="top-player-card gold">
+                <div class="rank-badge">#1</div>
+                <img src="images/avatar-default.png" alt="Player Avatar" class="player-avatar">
+                <h3 class="player-name">EliteGamerX</h3>
+                <p class="player-stats">Wins: 55 | K/D: 3.1</p>
+                <div class="rank-change stable"><i class="fas fa-minus"></i></div>
+            </div>
+            <div class="top-player-card bronze">
+                <div class="rank-badge">#3</div>
+                <img src="images/avatar-default.png" alt="Player Avatar" class="player-avatar">
+                <h3 class="player-name">PhoenixFlame</h3>
+                <p class="player-stats">Wins: 42 | K/D: 2.5</p>
+                <div class="rank-change up"><i class="fas fa-caret-up"></i> 2</div>
+            </div>
+        </section>
+
+        <div class="leaderboard-filters">
+            <label for="game-filter" class="filter-label">Filter by Game:</label>
+            <select id="game-filter" class="filter-dropdown">
+                <option value="all">All Games</option>
+                <option value="bgmi">bgmi</option>
+            </select>
+        </div>
+
+        <section class="leaderboard-list-section">
+            <div class="leaderboard-header-row">
+                <div class="header-item rank">Rank</div>
+                <div class="header-item player">Player</div>
+                <div class="header-item game">Game</div>
+                <div class="header-item wins">Wins</div>
+                <div class="header-item kd">K/D</div>
+                <div class="header-item change">Change</div>
+            </div>
+            <div class="leaderboard-player-rows">
+                <div class="player-row">
+                    <div class="rank">4</div>
+                    <div class="player">
+                        <img src="images/avatar-default.png" alt="Player Avatar" class="player-list-avatar">
+                        VortexHunter
+                    </div>
+                    <div class="game">Valorant</div>
+                    <div class="wins">39</div>
+                    <div class="kd">2.3</div>
+                    <div class="change stable"><i class="fas fa-minus"></i></div>
+                </div>
+                <div class="player-row">
+                    <div class="rank">5</div>
+                    <div class="player">
+                        <img src="images/avatar-default.png" alt="Player Avatar" class="player-list-avatar">
+                        CyberSniper
+                    </div>
+                    <div class="game">Dota 2</div>
+                    <div class="wins">37</div>
+                    <div class="kd">2.1</div>
+                    <div class="change up"><i class="fas fa-caret-up"></i> 1</div>
+                </div>
+                <div class="player-row">
+                    <div class="rank">6</div>
+                    <div class="player">
+                        <img src="images/avatar-default.png" alt="Player Avatar" class="player-list-avatar">
+                        NightCrawler
+                    </div>
+                    <div class="game">CS2</div>
+                    <div class="wins">35</div>
+                    <div class="kd">2.0</div>
+                    <div class="change down"><i class="fas fa-caret-down"></i> 2</div>
+                </div>
+                <div class="player-row">
+                    <div class="rank">7</div>
+                    <div class="player">
+                        <img src="images/avatar-default.png" alt="Player Avatar" class="player-list-avatar">
+                        StormBreaker
+                    </div>
+                    <div class="game">Apex Legends</div>
+                    <div class="wins">33</div>
+                    <div class="kd">1.9</div>
+                    <div class="change stable"><i class="fas fa-minus"></i></div>
+                </div>
+                 <div class="player-row">
+                    <div class="rank">8</div>
+                    <div class="player">
+                        <img src="images/avatar-default.png" alt="Player Avatar" class="player-list-avatar">
+                        BlazeFury
+                    </div>
+                    <div class="game">Valorant</div>
+                    <div class="wins">32</div>
+                    <div class="kd">1.8</div>
+                    <div class="change up"><i class="fas fa-caret-up"></i> 1</div>
+                </div>
+                 <div class="player-row">
+                    <div class="rank">9</div>
+                    <div class="player">
+                        <img src="images/avatar-default.png" alt="Player Avatar" class="player-list-avatar">
+                        IronHeart
+                    </div>
+                    <div class="game">Dota 2</div>
+                    <div class="wins">30</div>
+                    <div class="kd">1.7</div>
+                    <div class="change down"><i class="fas fa-caret-down"></i> 1</div>
+                </div>
+                 <div class="player-row">
+                    <div class="rank">10</div>
+                    <div class="player">
+                        <img src="images/avatar-default.png" alt="Player Avatar" class="player-list-avatar">
+                        GhostRecon
+                    </div>
+                    <div class="game">CS2</div>
+                    <div class="wins">28</div>
+                    <div class="kd">1.6</div>
+                    <div class="change stable"><i class="fas fa-minus"></i></div>
+                </div>
+            </div>
+        </section>
+    </div>
+</body>
+</html>
