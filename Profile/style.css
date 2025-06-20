@@ -1,0 +1,350 @@
+/* General Styling for Profile Page - Consistent with GamingPro Hub Theme */
+body {
+    font-family: 'Arial', sans-serif;
+    margin: 0;
+    background-color: #1a1a2e; /* Dark gaming-themed background */
+    color: #e0e0e0;
+    overflow-x: hidden; /* Prevent horizontal scrollbar */
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+}
+
+/* Navbar for Profile Page */
+.profile-navbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 15px 15px;
+    background-color: #0f0f1b; /* Match main navbar */
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.5);
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+}
+
+.profile-website-name {
+    font-size: 1.8em;
+    font-weight: bold;
+    color: #e94560; /* Accent color */
+    text-decoration: none;
+    text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.7);
+    white-space: nowrap;
+}
+
+.profile-nav-links {
+    display: flex;
+    align-items: center;
+    gap: 25px;
+    flex-wrap: wrap;
+    justify-content: flex-end;
+}
+
+.home {
+    color: #c0c0c0;
+    text-decoration: none;
+    font-size: 1.1em;
+    font-weight: 500;
+    transition: color 0.3s ease, transform 0.2s ease;
+    padding: 5px 0;
+    position: relative;
+    white-space: nowrap;
+}
+
+.profile-nav-link:hover {
+    color: #e94560;
+    transform: translateY(-2px);
+    text-shadow: 0 0 8px rgba(233, 69, 96, 0.5);
+}
+
+.profile-nav-link::after { /* Underline effect for links */
+    content: '';
+    position: absolute;
+    width: 0;
+    height: 2px;
+    background-color: #e94560;
+    left: 0;
+    bottom: 0;
+    transition: width 0.3s ease-in-out;
+}
+
+.profile-nav-link:hover::after {
+    width: 100%;
+}
+
+.profile-logout-link { /* Button-like style for Logout link */
+    background-color: #533483;
+    color: white;
+    padding: 8px 15px;
+    border-radius: 5px;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+    text-shadow: none;
+}
+
+.profile-logout-link:hover {
+    background-color: #3b255c;
+    transform: translateY(-2px);
+    color: white;
+}
+
+.profile-logout-link::after {
+    display: none; /* Hide underline for button-like link */
+}
+
+/* Profile Content Layout */
+.profile-container {
+    flex-grow: 1; /* Allows container to take up available space */
+    padding: 30px;
+    max-width: 1200px;
+    margin: 30px auto;
+    background-color: #0f0f1b; /* Match navbar background */
+    border-radius: 10px;
+    box-shadow: 0 5px 20px rgba(0, 0, 0, 0.7);
+    border: 1px solid #533483; /* Accent border */
+}
+
+.profile-header-section {
+    text-align: center;
+    margin-bottom: 40px;
+    padding-bottom: 20px;
+    border-bottom: 1px solid rgba(83, 52, 131, 0.4);
+}
+
+.profile-avatar {
+    width: 120px;
+    height: 120px;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 4px solid #e94560; /* Accent border for avatar */
+    margin-bottom: 15px;
+    box-shadow: 0 0 15px rgba(233, 69, 96, 0.4);
+}
+
+.profile-username {
+    font-size: 2.8em;
+    color: #ffffff;
+    margin-bottom: 10px;
+    text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.5);
+}
+
+.profile-status {
+    font-size: 1.1em;
+    color: #c0c0c0;
+    margin-bottom: 20px;
+}
+
+.online-status-dot {
+    color: #4CAF50; /* Green dot for online status */
+    font-size: 0.8em;
+    vertical-align: middle;
+    margin-left: 5px;
+}
+
+.edit-profile-button {
+    background-color: #533483; /* Purple button */
+    color: white;
+    border: none;
+    padding: 10px 25px;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 1.1em;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+.edit-profile-button:hover {
+    background-color: #3b255c;
+    transform: translateY(-2px);
+}
+
+.profile-details-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 30px;
+    margin-bottom: 50px;
+}
+
+.profile-detail-card {
+    background-color: #2e2e4a; /* Match match card background */
+    padding: 25px;
+    border-radius: 10px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.4);
+    border: 1px solid #533483;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.profile-detail-card h3 {
+    color: #e94560; /* Accent color for subheadings */
+    margin-bottom: 15px;
+    font-size: 1.5em;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    border-bottom: 1px solid rgba(233, 69, 96, 0.3);
+    padding-bottom: 8px;
+    width: 100%;
+}
+
+.iframe-placeholder {
+    width: 100%;
+    height: 70px; /* Fixed height for consistent iframe-like appearance */
+    background-color: #1a1a2e; /* Darker background for the iframe area */
+    border: 1px solid rgba(83, 52, 131, 0.7);
+    border-radius: 8px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden; /* Hide overflow from iframe content if any */
+}
+
+.profile-data-iframe {
+    width: 100%;
+    height: 100%;
+    border: none;
+    background-color: transparent; /* Allows parent background to show if iframe content is transparent */
+}
+
+
+.profile-section-full-width {
+    background-color: #2e2e4a;
+    padding: 30px;
+    border-radius: 10px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.4);
+    border: 1px solid #533483;
+    margin-bottom: 40px;
+}
+
+.profile-section-full-width h2 {
+    color: #e94560;
+    margin-bottom: 25px;
+    font-size: 2em;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    border-bottom: 2px solid #533483;
+    padding-bottom: 10px;
+    text-align: center;
+}
+
+.iframe-placeholder-full {
+    width: 100%;
+    height: 250px; /* Adjust height as needed for larger sections */
+    background-color: #1a1a2e;
+    border: 1px solid rgba(83, 52, 131, 0.7);
+    border-radius: 8px;
+    overflow: hidden;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.profile-data-iframe-full {
+    width: 100%;
+    height: 100%;
+    border: none;
+    background-color: transparent;
+}
+
+
+/* Responsive Adjustments for Profile Page */
+@media (max-width: 992px) {
+    .profile-container {
+        padding: 20px;
+        margin: 20px auto;
+    }
+    .profile-header-section {
+        margin-bottom: 30px;
+    }
+    .profile-username {
+        font-size: 2.2em;
+    }
+    .profile-details-grid {
+        grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+        gap: 20px;
+    }
+    .profile-detail-card {
+        padding: 20px;
+    }
+    .profile-detail-card h3 {
+        font-size: 1.3em;
+    }
+    .iframe-placeholder {
+        height: 60px;
+    }
+    .profile-section-full-width {
+        padding: 25px;
+    }
+    .profile-section-full-width h2 {
+        font-size: 1.8em;
+    }
+    .iframe-placeholder-full {
+        height: 200px;
+    }
+}
+
+@media (max-width: 768px) {
+    .profile-navbar {
+        flex-direction: column;
+        padding: 10px 10px;
+    }
+    .profile-navbar-left, .profile-navbar-right {
+        flex-basis: 100%;
+        text-align: center;
+        margin-bottom: 5px;
+    }
+    .profile-website-name {
+        font-size: 1.5em;
+    }
+    .profile-nav-links {
+        justify-content: center;
+        gap: 15px;
+        margin-top: 10px;
+    }
+    .profile-nav-link {
+        font-size: 1em;
+        padding: 5px 8px;
+    }
+    .profile-logout-link {
+        padding: 6px 12px;
+        font-size: 0.9em;
+    }
+
+    .profile-container {
+        padding: 15px;
+        margin: 15px auto;
+    }
+    .profile-avatar {
+        width: 100px;
+        height: 100px;
+    }
+    .profile-username {
+        font-size: 1.8em;
+    }
+    .edit-profile-button {
+        padding: 8px 20px;
+        font-size: 1em;
+    }
+    .profile-details-grid {
+        grid-template-columns: 1fr; /* Stack columns on smaller screens */
+        gap: 15px;
+    }
+    .profile-detail-card {
+        padding: 15px;
+    }
+    .profile-detail-card h3 {
+        font-size: 1.2em;
+    }
+    .iframe-placeholder {
+        height: 50px;
+    }
+    .profile-section-full-width {
+        padding: 20px;
+    }
+    .profile-section-full-width h2 {
+        font-size: 1.6em;
+    }
+    .iframe-placeholder-full {
+        height: 150px;
+    }
+}
