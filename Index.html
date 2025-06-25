@@ -1,0 +1,464 @@
+<!DOCTYPE html>
+<html lang="hi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GameHub - आपका अल्टीमेट गेमिंग डेस्टिनेशन</title>
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #f0f4f8; /* हल्का बैकग्राउंड */
+            color: #333;
+        }
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 1rem;
+        }
+        .carousel-track {
+            display: flex;
+            transition: transform 0.7s ease-in-out;
+        }
+        .carousel-slide {
+            flex-shrink: 0;
+            width: 100%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 1000;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            overflow: auto;
+            background-color: rgba(0,0,0,0.6);
+            justify-content: center;
+            align-items: center;
+        }
+        .modal-content {
+            background-color: #fff;
+            margin: auto;
+            padding: 2rem;
+            border-radius: 0.75rem;
+            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+            max-width: 500px;
+            width: 90%;
+            position: relative;
+        }
+        .close-button {
+            position: absolute;
+            top: 1rem;
+            right: 1rem;
+            font-size: 1.5rem;
+            cursor: pointer;
+            color: #666;
+        }
+        .btn-primary {
+            @apply bg-blue-600 hover:bg-blue-700 text-white font-semibold py-2 px-4 rounded-lg shadow-md transition-colors duration-200;
+        }
+        .btn-secondary {
+            @apply bg-gray-300 hover:bg-gray-400 text-gray-800 font-semibold py-2 px-4 rounded-lg shadow-md transition-colors duration-200;
+        }
+        .input-field {
+            @apply w-full p-2 border border-gray-300 rounded-md focus:ring-blue-500 focus:border-blue-500;
+        }
+        .chart-container {
+            position: relative;
+            width: 100%;
+            max-width: 600px; /* चार्ट के लिए अधिकतम चौड़ाई */
+            margin-left: auto;
+            margin-right: auto;
+            height: 300px; /* चार्ट के लिए आधार ऊंचाई */
+            max-height: 400px; /* चार्ट के लिए अधिकतम ऊंचाई */
+        }
+        @media (min-width: 768px) {
+            .chart-container {
+                height: 350px;
+            }
+        }
+    </style>
+</head>
+<body class="flex flex-col min-h-screen">
+    <!-- शीर्षलेख -->
+    <header class="bg-white shadow-md py-4">
+        <div class="container flex justify-between items-center">
+            <div class="text-3xl font-bold text-gray-800">GameHub</div>
+            <nav>
+                <ul class="flex space-x-6 text-gray-700">
+                    <li><a href="#" class="hover:text-blue-600 transition-colors duration-200">गेम्स</a></li>
+                    <li><a href="#" class="hover:text-blue-600 transition-colors duration-200">लीडरबोर्ड</a></li>
+                    <li><a href="#" class="hover:text-blue-600 transition-colors duration-200">नियम</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <!-- मुख्य सामग्री -->
+    <main class="flex-grow py-8">
+        <div class="container">
+            <!-- छवि हिंडोला -->
+            <section class="mb-12">
+                <h2 class="text-4xl font-extrabold text-center text-gray-800 mb-8">विशेष खेल छवियाँ</h2>
+                <div class="relative w-full overflow-hidden rounded-lg shadow-lg bg-gray-100 h-64 md:h-80">
+                    <div id="carousel-track" class="carousel-track h-full">
+                        <!-- JavaScript द्वारा हिंडोला छवियाँ यहां लोड होंगी -->
+                    </div>
+                </div>
+            </section>
+
+            <!-- टूर्नामेंट अनुभाग -->
+            <section class="mb-12">
+                <h2 class="text-4xl font-extrabold text-center text-gray-800 mb-10">टूर्नामेंट</h2>
+
+                <!-- आगामी मैच -->
+                <div class="mb-10">
+                    <h3 class="text-3xl font-bold text-blue-700 mb-6 border-b-2 border-blue-300 pb-2">आगामी मैच</h3>
+                    <div id="upcoming-matches" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                        <!-- JavaScript द्वारा आगामी मैच यहां लोड होंगे -->
+                        <p class="text-gray-600 col-span-full text-center" id="no-upcoming">कोई आगामी मैच नहीं।</p>
+                    </div>
+                </div>
+
+                <!-- चल रहे मैच -->
+                <div class="mb-10">
+                    <h3 class="text-3xl font-bold text-green-700 mb-6 border-b-2 border-green-300 pb-2">चल रहे मैच</h3>
+                    <div id="ongoing-matches" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                        <!-- JavaScript द्वारा चल रहे मैच यहां लोड होंगे -->
+                        <p class="text-gray-600 col-span-full text-center" id="no-ongoing">कोई चल रहे मैच नहीं।</p>
+                    </div>
+                </div>
+
+                <!-- समाप्त हुए मैच -->
+                <div>
+                    <h3 class="text-3xl font-bold text-red-700 mb-6 border-b-2 border-red-300 pb-2">समाप्त हुए मैच</h3>
+                    <div id="completed-matches" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                        <!-- JavaScript द्वारा समाप्त हुए मैच यहां लोड होंगे -->
+                        <p class="text-gray-600 col-span-full text-center" id="no-completed">कोई समाप्त हुए मैच नहीं।</p>
+                    </div>
+                </div>
+            </section>
+        </div>
+    </main>
+
+    <!-- पंजीकरण मोडाल -->
+    <div id="registration-modal" class="modal">
+        <div class="modal-content">
+            <span class="close-button" id="close-modal">&times;</span>
+            <h3 class="text-2xl font-bold text-gray-800 mb-6 text-center">टूर्नामेंट में शामिल हों</h3>
+            <div id="registration-form-section" class="space-y-4">
+                <div>
+                    <label for="reg-name" class="block text-gray-700 text-sm font-medium mb-1">नाम</label>
+                    <input type="text" id="reg-name" class="input-field" placeholder="अपना नाम दर्ज करें">
+                </div>
+                <div>
+                    <label for="reg-email" class="block text-gray-700 text-sm font-medium mb-1">ईमेल</label>
+                    <input type="email" id="reg-email" class="input-field" placeholder="अपना ईमेल दर्ज करें">
+                </div>
+                <div>
+                    <label for="reg-uid" class="block text-gray-700 text-sm font-medium mb-1">यूआईडी</label>
+                    <input type="text" id="reg-uid" class="input-field" placeholder="अपना इन-गेम यूआईडी दर्ज करें">
+                </div>
+                <button id="send-otp-btn" class="btn-primary w-full">ओटीपी भेजें</button>
+            </div>
+
+            <div id="otp-section" class="space-y-4 mt-4 hidden">
+                <div>
+                    <label for="otp-input" class="block text-gray-700 text-sm font-medium mb-1">ओटीपी</label>
+                    <input type="text" id="otp-input" class="input-field" placeholder="ओटीपी दर्ज करें">
+                </div>
+                <button id="verify-otp-btn" class="btn-primary w-full">ओटीपी सत्यापित करें और भुगतान के लिए आगे बढ़ें</button>
+            </div>
+
+            <div id="payment-section" class="space-y-4 mt-4 hidden">
+                <h4 class="text-xl font-bold text-green-700 text-center">भुगतान विकल्प</h4>
+                <div class="flex flex-col items-center space-y-4">
+                    <img src="https://placehold.co/200x200/4CAF50/FFFFFF?text=QR+Code" alt="QR Code" class="rounded-lg border border-gray-300">
+                    <button id="simulate-payment-btn" class="btn-primary w-full">भुगतान गेटवे का अनुकरण करें</button>
+                </div>
+            </div>
+
+            <p id="registration-message" class="mt-4 text-center text-sm font-medium"></p>
+        </div>
+    </div>
+
+    <!-- फ़ुटर -->
+    <footer class="bg-gray-800 text-white py-6 mt-8">
+        <div class="container text-center">
+            <div class="flex justify-center space-x-6 mb-4">
+                <a href="#" class="hover:text-blue-400 transition-colors duration-200">फेसबुक</a>
+                <a href="#" class="hover:text-blue-400 transition-colors duration-200">ट्विटर</a>
+                <a href="#" class="hover:text-blue-400 transition-colors duration-200">इंस्टाग्राम</a>
+            </div>
+            <div class="flex justify-center space-x-6 text-sm mb-2">
+                <a href="#" class="hover:text-blue-400 transition-colors duration-200">नियम और शर्तें</a>
+                <a href="#" class="hover:text-blue-400 transition-colors duration-200">गोपनीयता नीति</a>
+                <a href="#" class="hover:text-blue-400 transition-colors duration-200">हमसे संपर्क करें</a>
+            </div>
+            <p>&copy; 2025 GameHub। सर्वाधिकार सुरक्षित।</p>
+        </div>
+    </footer>
+
+    <script>
+        // Google Apps Script वेब ऐप URL जिसे आपने डिप्लॉय किया है
+        const API_BASE_URL = 'https://script.google.com/macros/s/AKfycbyA_OsyHEjBGY6YbxBtuOWAXB-amnNpQvwNii92FzUDpE4h5bdvgkIQovVupO-WEGl55g/exec'; 
+
+        const carouselTrack = document.getElementById('carousel-track');
+        const upcomingMatchesContainer = document.getElementById('upcoming-matches');
+        const ongoingMatchesContainer = document.getElementById('ongoing-matches');
+        const completedMatchesContainer = document.getElementById('completed-matches');
+        const noUpcomingText = document.getElementById('no-upcoming');
+        const noOngoingText = document.getElementById('no-ongoing');
+        const noCompletedText = document.getElementById('no-completed');
+
+        const registrationModal = document.getElementById('registration-modal');
+        const closeModalBtn = document.getElementById('close-modal');
+        const registrationFormSection = document.getElementById('registration-form-section');
+        const otpSection = document.getElementById('otp-section');
+        const paymentSection = document.getElementById('payment-section');
+        const registrationMessageElem = document.getElementById('registration-message');
+
+        const regNameInput = document.getElementById('reg-name');
+        const regEmailInput = document.getElementById('reg-email');
+        const regUidInput = document.getElementById('reg-uid');
+        const sendOtpBtn = document.getElementById('send-otp-btn');
+        const otpInput = document.getElementById('otp-input');
+        const verifyOtpBtn = document.getElementById('verify-otp-btn');
+        const simulatePaymentBtn = document.getElementById('simulate-payment-btn');
+
+        let currentImageIndex = 0;
+        let carouselInterval;
+        let tournamentsData = [];
+        let selectedTournamentForRegistration = null;
+
+        // कैरोसेल छवियाँ प्राप्त करें
+        async function fetchCarouselImages() {
+            try {
+                const response = await fetch(`${API_BASE_URL}?path=carousel-images`);
+                if (!response.ok) {
+                    throw new Error(`HTTP त्रुटि स्थिति: ${response.status}`);
+                }
+                const images = await response.json();
+                renderCarousel(images);
+            } catch (error) {
+                console.error('कैरोसेल छवियाँ प्राप्त करने में त्रुटि:', error);
+                carouselTrack.innerHTML = '<p class="text-gray-600 text-center w-full">छवियाँ लोड करने में असमर्थ।</p>';
+            }
+        }
+
+        // कैरोसेल छवियाँ रेंडर करें
+        function renderCarousel(images) {
+            carouselTrack.innerHTML = ''; // मौजूदा छवियों को साफ़ करें
+            if (images.length === 0) {
+                carouselTrack.innerHTML = '<p class="text-gray-600 text-center w-full">कोई कैरोसेल छवियां उपलब्ध नहीं हैं।</p>';
+                return;
+            }
+
+            images.forEach((image, index) => {
+                const slide = document.createElement('div');
+                slide.className = 'carousel-slide';
+                const imgElement = document.createElement('img');
+                imgElement.src = image.URL;
+                imgElement.alt = `कैरोसेल छवि ${index + 1}`;
+                imgElement.className = 'w-full h-full object-cover rounded-lg';
+                imgElement.onerror = () => {
+                    imgElement.src = `https://placehold.co/800x600/CCDDEE/333333?text=Image+Error`;
+                };
+                slide.appendChild(imgElement);
+                carouselTrack.appendChild(slide);
+            });
+
+            // ट्रैक के लिए प्रारंभिक चौड़ाई सेट करें
+            carouselTrack.style.width = `${images.length * 100}%`;
+
+            startCarousel(images.length);
+        }
+
+        // कैरोसेल एनीमेशन शुरू करें
+        function startCarousel(imageCount) {
+            if (carouselInterval) {
+                clearInterval(carouselInterval);
+            }
+            if (imageCount === 0) return;
+
+            carouselInterval = setInterval(() => {
+                currentImageIndex = (currentImageIndex + 1) % imageCount;
+                carouselTrack.style.transform = `translateX(-${currentImageIndex * (100 / imageCount)}%)`;
+            }, 3000); // 3 सेकंड
+        }
+
+        // टूर्नामेंट प्राप्त करें
+        async function fetchTournaments() {
+            try {
+                const response = await fetch(`${API_BASE_URL}?path=tournaments`);
+                if (!response.ok) {
+                    throw new Error(`HTTP त्रुटि स्थिति: ${response.status}`);
+                }
+                tournamentsData = await response.json();
+                categorizeAndRenderTournaments(tournamentsData);
+            } catch (error) {
+                console.error('टूर्नामेंट प्राप्त करने में त्रुटि:', error);
+                upcomingMatchesContainer.innerHTML = '<p class="text-gray-600 col-span-full text-center">टूर्नामेंट लोड करने में असमर्थ।</p>';
+                ongoingMatchesContainer.innerHTML = ''; // "कोई चल रहा नहीं" साफ़ करें
+                completedMatchesContainer.innerHTML = ''; // "कोई समाप्त नहीं" साफ़ करें
+            }
+        }
+
+        // टूर्नामेंट को वर्गीकृत करें और रेंडर करें
+        function categorizeAndRenderTournaments(tournaments) {
+            const now = new Date();
+            const upcoming = [];
+            const ongoing = [];
+            const completed = [];
+
+            tournaments.forEach(tourney => {
+                const startDate = new Date(tourney.StartDate);
+                const endDate = new Date(tourney.EndDate);
+
+                if (now < startDate) {
+                    upcoming.push(tourney);
+                } else if (now >= startDate && now <= endDate) {
+                    ongoing.push(tourney);
+                } else {
+                    completed.push(tourney);
+                }
+            });
+
+            renderTournamentSection(upcomingMatchesContainer, upcoming, 'upcoming');
+            renderTournamentSection(ongoingMatchesContainer, ongoing, 'ongoing');
+            renderTournamentSection(completedMatchesContainer, completed, 'completed');
+
+            noUpcomingText.style.display = upcoming.length === 0 ? 'block' : 'none';
+            noOngoingText.style.display = ongoing.length === 0 ? 'block' : 'none';
+            noCompletedText.style.display = completed.length === 0 ? 'block' : 'none';
+        }
+
+        // व्यक्तिगत टूर्नामेंट अनुभाग रेंडर करें
+        function renderTournamentSection(container, tournaments, type) {
+            container.innerHTML = ''; // मौजूदा सामग्री साफ़ करें
+            tournaments.forEach(tourney => {
+                const tournamentCard = document.createElement('div');
+                tournamentCard.className = 'bg-white p-6 rounded-xl shadow-lg border border-gray-200';
+                if (type !== 'completed') {
+                    tournamentCard.classList.add('hover:scale-105', 'transition-transform', 'duration-300');
+                }
+
+                tournamentCard.innerHTML = `
+                    <h4 class="text-2xl font-bold text-gray-800 mb-2">${tourney.Name}</h4>
+                    <p class="text-gray-600 mb-3">${tourney.Description}</p>
+                    <p class="text-gray-500 text-sm">
+                        <span class="font-semibold">दिनांक:</span> ${new Date(tourney.StartDate).toLocaleString()} - ${new Date(tourney.EndDate).toLocaleString()}
+                    </p>
+                    ${type !== 'completed' ? `<button data-id="${tourney.ID}" class="join-btn mt-4 w-full btn-primary">शामिल हों</button>` : `<p class="mt-4 text-center text-gray-500 italic">यह टूर्नामेंट समाप्त हो चुका है।</p>`}
+                `;
+                container.appendChild(tournamentCard);
+            });
+
+            if (type !== 'completed') {
+                container.querySelectorAll('.join-btn').forEach(button => {
+                    button.addEventListener('click', (event) => {
+                        const tournamentId = event.target.dataset.id;
+                        selectedTournamentForRegistration = tournamentsData.find(t => t.ID === tournamentId);
+                        openRegistrationModal();
+                    });
+                });
+            }
+        }
+
+        // पंजीकरण मोडाल खोलें
+        function openRegistrationModal() {
+            registrationModal.style.display = 'flex';
+            regNameInput.value = '';
+            regEmailInput.value = '';
+            regUidInput.value = '';
+            registrationMessageElem.textContent = '';
+            otpInput.value = '';
+
+            registrationFormSection.classList.remove('hidden');
+            otpSection.classList.add('hidden');
+            paymentSection.classList.add('hidden');
+        }
+
+        // पंजीकरण मोडाल बंद करें
+        closeModalBtn.addEventListener('click', () => {
+            registrationModal.style.display = 'none';
+        });
+
+        // ओटीपी भेजें (सिमुलेटेड)
+        sendOtpBtn.addEventListener('click', () => {
+            if (!regNameInput.value || !regEmailInput.value || !regUidInput.value) {
+                registrationMessageElem.className = 'mt-4 text-center text-sm font-medium text-red-500';
+                registrationMessageElem.textContent = 'कृपया सभी पंजीकरण फ़ील्ड भरें।';
+                return;
+            }
+            registrationMessageElem.className = 'mt-4 text-center text-sm font-medium text-blue-600';
+            registrationMessageElem.textContent = 'ओटीपी आपके ईमेल पर भेजा गया है (सिमुलेटेड: 123456)';
+            registrationFormSection.classList.add('hidden');
+            otpSection.classList.remove('hidden');
+        });
+
+        // ओटीपी सत्यापित करें और भुगतान के लिए आगे बढ़ें (सिमुलेटेड)
+        verifyOtpBtn.addEventListener('click', () => {
+            if (otpInput.value === '123456') { // सिमुलेटेड ओटीपी
+                registrationMessageElem.className = 'mt-4 text-center text-sm font-medium text-green-600';
+                registrationMessageElem.textContent = 'ओटीपी सत्यापित हो गया है। अब भुगतान के लिए आगे बढ़ें।';
+                otpSection.classList.add('hidden');
+                paymentSection.classList.remove('hidden');
+            } else {
+                registrationMessageElem.className = 'mt-4 text-center text-sm font-medium text-red-500';
+                registrationMessageElem.textContent = 'अवैध ओटीपी। कृपया पुनः प्रयास करें।';
+            }
+        });
+
+        // भुगतान का अनुकरण करें और खिलाड़ी पंजीकृत करें
+        simulatePaymentBtn.addEventListener('click', async () => {
+            if (!selectedTournamentForRegistration) return;
+
+            registrationMessageElem.className = 'mt-4 text-center text-sm font-medium text-blue-600';
+            registrationMessageElem.textContent = 'भुगतान सफल रहा! डेटा सहेजा जा रहा है...';
+
+            const registrationData = {
+                name: regNameInput.value,
+                email: regEmailInput.value,
+                uid: regUidInput.value,
+            };
+
+            try {
+                const response = await fetch(`${API_BASE_URL}?path=tournaments/${selectedTournamentForRegistration.ID}/registrations&method=POST`, {
+                    method: 'POST', // सभी API कॉल GAS में doPost के माध्यम से रूट होंगी
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify(registrationData),
+                });
+
+                if (!response.ok) {
+                    const errorData = await response.json();
+                    throw new Error(errorData.message || 'पंजीकरण विफल रहा');
+                }
+
+                registrationMessageElem.className = 'mt-4 text-center text-sm font-medium text-green-600';
+                registrationMessageElem.innerHTML = 'पंजीकरण सफल! रूम आईडी और पासवर्ड मैच से 10 मिनट पहले आपके पंजीकृत ईमेल पर भेजे जाएंगे।';
+                
+                setTimeout(() => {
+                    registrationModal.style.display = 'none';
+                }, 3000); // 3 सेकंड के बाद मोडाल बंद करें
+            } catch (error) {
+                console.error('पंजीकरण विफल:', error);
+                registrationMessageElem.className = 'mt-4 text-center text-sm font-medium text-red-500';
+                registrationMessageElem.textContent = `पंजीकरण विफल: ${error.message}`;
+            }
+        });
+
+        // प्रारंभिक डेटा लोड
+        document.addEventListener('DOMContentLoaded', () => {
+            fetchCarouselImages();
+            fetchTournaments();
+        });
+    </script>
+</body>
+</html>
